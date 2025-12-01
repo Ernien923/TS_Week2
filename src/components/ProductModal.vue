@@ -128,7 +128,7 @@ const saveProduct = async () => {
     resetImages([])
     closeModal()
   } catch (error) {
-    alert('新增/編輯產品失敗')
+    alert(`新增/編輯產品失敗: ${error}` )
   } finally {
     isLoading.value = false
     emit('get-products')
