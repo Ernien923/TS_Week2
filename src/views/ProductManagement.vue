@@ -1,4 +1,4 @@
-<!-- 
+<!--
 ==========================================
 TypeScript 練習題目 - 商品管理頁面
 ==========================================
@@ -16,6 +16,7 @@ TypeScript 練習題目 - 商品管理頁面
 // TODO: 匯入 API 函式
 // 提示：從 @/api/products 匯入 apiDeleteProduct, apiGetProducts
 import {} from '@/api/products'
+import { apiGetProducts, apiDeleteProduct } from '@/api/products'
 
 import DeleteModal from '@/components/DeleteModal.vue'
 import ProductModal from '@/components/ProductModal.vue'
@@ -24,6 +25,7 @@ import ProductModal from '@/components/ProductModal.vue'
 // 提示：從 @/types/product 匯入 Pagination, ProductData
 import type {} from '@/types/product'
 import { onMounted, ref, useTemplateRef } from 'vue'
+import type { Pagination, ProductData } from '@/types/product'
 
 // TODO: 為模板引用加上型別註解
 // 提示：使用 useTemplateRef<InstanceType<typeof ProductModal>>()
