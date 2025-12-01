@@ -15,7 +15,7 @@ TypeScript 練習題目 - 商品管理頁面
 <script setup lang="ts">
 // TODO: 匯入 API 函式
 // 提示：從 @/api/products 匯入 apiDeleteProduct, apiGetProducts
-import {} from '@/api/products'
+
 import { apiGetProducts, apiDeleteProduct } from '@/api/products'
 
 import DeleteModal from '@/components/DeleteModal.vue'
@@ -25,11 +25,11 @@ import ProductModal from '@/components/ProductModal.vue'
 // 提示：從 @/types/product 匯入 Pagination, ProductData
 import type {} from '@/types/product'
 import { onMounted, ref, useTemplateRef } from 'vue'
-import type { Pagination, ProductData } from '@/types/product'
+import { Pagination, ProductData } from '@/types/product'
 
 // TODO: 為模板引用加上型別註解
 // 提示：使用 useTemplateRef<InstanceType<typeof ProductModal>>()
-const productModalRef = useTemplateRef('productModalRef')
+const productModalRef = useTemplateRef<InstanceType<typeof ProductModal>>('productModalRef')
 const deleteModalRef = useTemplateRef('deleteModalRef')
 
 // TODO: 為 currentPage 加上型別註解
@@ -89,7 +89,7 @@ const tempProduct = ref(getInitialProductData())
 
 // TODO: 為 openModal 函式加上型別註解
 // 提示：參數 product 的型別是 ProductData | null，預設值是 null，沒有回傳值
-const openModal = (product = null) => {
+const openModal = (product: ProductData | null) => {
   if (product) {
     tempProduct.value = { ...product, imagesUrl: product.imagesUrl ? [...product.imagesUrl] : [''] }
   }
@@ -99,13 +99,13 @@ const openModal = (product = null) => {
 
 // TODO: 為 openDeleteModal 函式加上型別註解
 // 提示：參數 productId 是 string 型別，沒有回傳值
-const openDeleteModal = (productId) => {
+const openDeleteModal = (productId: string) => {
   deleteModalRef.value?.openModal(() => handleDeleteProduct(productId))
 }
 
 // TODO: 為 handleDeleteProduct 函式加上型別註解
 // 提示：這是一個 async 函式，參數 productId 是 string 型別，回傳 Promise<void>
-const handleDeleteProduct = async (productId) => {
+const handleDeleteProduct = async (productId: string) => {
   try {
     await apiDeleteProduct(productId)
   } catch (error) {
