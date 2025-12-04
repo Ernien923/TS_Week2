@@ -31,6 +31,9 @@
     "erasableSyntaxOnly": false,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
   }
 }

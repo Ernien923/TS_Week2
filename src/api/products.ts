@@ -52,7 +52,7 @@ productApi.interceptors.response.use(
 // 提示：
 // - 參數 params 是一個物件，包含可選的 page 和 category 屬性（都是字串）
 // - 回傳值是 Promise<AxiosResponse<GetProductsResponse>>
-export const apiGetProducts = (params: {page?: string, category: string}): Promise<AxiosResponse<GetProductsResponse>> =>
+export const apiGetProducts = (params: {page?: string, category?: string}): Promise<AxiosResponse<GetProductsResponse>> =>
   productApi.get(`/v2/api/${API_PATH}/admin/products`, {
     params,
   })

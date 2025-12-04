@@ -25,24 +25,24 @@ import ProductModal from '@/components/ProductModal.vue'
 // 提示：從 @/types/product 匯入 Pagination, ProductData
 import type {} from '@/types/product'
 import { onMounted, ref, useTemplateRef } from 'vue'
-import { Pagination, ProductData } from '@/types/product'
+import type { Pagination, ProductData } from '@/types/product'
 
 // TODO: 為模板引用加上型別註解
 // 提示：使用 useTemplateRef<InstanceType<typeof ProductModal>>()
 const productModalRef = useTemplateRef<InstanceType<typeof ProductModal>>('productModalRef')
-const deleteModalRef = useTemplateRef('deleteModalRef')
+const deleteModalRef = useTemplateRef<InstanceType<typeof DeleteModal>>('deleteModalRef')
 
 // TODO: 為 currentPage 加上型別註解
 // 提示：使用 ref<string>()
-const currentPage = ref('1')
+const currentPage = ref<string>('1')
 
 // TODO: 為 products 加上型別註解
 // 提示：使用 ref<ProductData[]>()
-const products = ref([])
+const products = ref<ProductData[]>([])
 
 // TODO: 為 pagination 加上型別註解
 // 提示：使用 ref<Pagination>()
-const pagination = ref({
+const pagination = ref<Pagination>({
   total_pages: 0,
   current_page: 0,
   has_pre: false,
@@ -59,7 +59,7 @@ const getProducts = async () => {
     products.value = res.data.products
     pagination.value = res.data.pagination
   } catch (error) {
-    alert('取得產品列表失敗')
+    alert(`取得產品列表失敗: ${error}`)
   }
 }
 onMounted(() => {
@@ -68,7 +68,7 @@ onMounted(() => {
 
 // TODO: 為 getInitialProductData 函式加上型別註解
 // 提示：這個函式不接受參數，回傳 ProductData 型別
-const getInitialProductData = () => ({
+const getInitialProductData = (): ProductData => ({
   id: '',
   title: '',
   origin_price: 0,
@@ -109,7 +109,7 @@ const handleDeleteProduct = async (productId: string) => {
   try {
     await apiDeleteProduct(productId)
   } catch (error) {
-    alert('刪除商品失敗')
+    alert(`刪除商品失敗: ${error}`)
   } finally {
     getProducts()
   }
@@ -191,7 +191,7 @@ const handleDeleteProduct = async (productId: string) => {
               <span aria-hidden="true">&laquo;</span>
             </button>
           </li>
-          <li v-for="pageNum in pagination?.total_pages" class="page-item">
+          <li v-for="pageNum in pagination?.total_pages" class="page-item" :key="pageNum">
             <button
               @click="currentPage = pageNum.toString()"
               :disabled="currentPage === pageNum.toString()"
