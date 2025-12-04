@@ -1,4 +1,4 @@
-import { fileURLToPath, resolve, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url'
 
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
@@ -19,9 +19,9 @@ export default defineConfig({
       // input: {
       //   main: resolve(__dirname, 'index.html'),
       // },
-      output: {
-        dir: resolve(__dirname, 'dist'),
-      },
+      // output: {
+      //   dir: resolve(__dirname, 'dist'),
+      // },
     },
   },
   css: {
